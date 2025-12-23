@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EduReddit</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+EduReddit
+<span>
+{% if user %}
+Welcome {{user}} | <a href="/logout">Logout</a>
+{% else %}
+<a href="/login">Login</a> | <a href="/register">Register</a>
+{% endif %}
+| <a href="/admin">Admin</a>
+</span>
+</header>
+
+<div class="container">
+
+<h3>Create Post</h3>
+<form method="post" action="/post" enctype="multipart/form-data">
+<input name="title" placeholder="Title" required>
+<textarea name="description" placeholder="Description"></textarea>
+<select name="class" required>
+  <option value="">Select Class</option>
+  <option>Class 1</option>
+  <option>Class 2</option>
+  <option>Class 3</option>
+  <option>Class 4</option>
+  <option>Class 5</option>
+  <option>Class 6</option>
+  <option>Class 7</option>
+  <option>Class 8</option>
+  <option>Class 9</option>
+  <option>Class 10</option>
+  <option>Class 11</option>
+  <option>Class 12</option>
+  <option>College</option>
+  <option>Other</option>
+</select>
+<select name="subject" required>
+  <option value="">Select Subject</option>
+  <option>Mathematics</option>
+  <option>Science</option>
+  <option>Physics</option>
+  <option>Chemistry</option>
+  <option>Biology</option>
+  <option>English</option>
+  <option>Hindi</option>
+  <option>SST</option>
+  <option>Geography</option>
+  <option>History</option>
+  <option>Political Science</option>
+  <option>Economics</option>
+  <option>Computer Science</option>
+  <option>Informatics Practices</option>
+  <option>Accountancy</option>
+  <option>Business Studies</option>
+  <option>Other</option>
+</select>
+
+<input type="file" name="file">
+<button>Post</button>
+</form>
+
+<hr>
+
+{% for p in posts %}
+<div class="card">
+<h3>{{p[1]}}</h3>
+<p>{{p[2]}}</p>
+<p>{{p[3]}} | {{p[4]}}</p>
+{% if p[5] %}
+<a href="/download/{{p[5]}}">Download</a>
+{% endif %}
+{% if admin %}
+<a href="/delete/{{p[0]}}" style="color:red">Delete</a>
+{% endif %}
+</div>
+{% endfor %}
+
+<hr>
+<h3>Contact / Owner</h3>
+<p>📞 8100919717</p>
+<p>📧 piyushpandey3534@gmail.com</p>
+
+</div>
+</body>
+</html>
